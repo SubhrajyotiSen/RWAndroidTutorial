@@ -31,17 +31,41 @@
 package com.raywenderlich.android.rwandroidtutorial
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import android.view.*
+import androidx.fragment.app.Fragment
 
-class MainActivity : AppCompatActivity() {
+class AllMoviesFragment : Fragment() {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    setContentView(R.layout.activity_main)
+    setHasOptionsMenu(true)
+  }
 
-    val allMoviesFragment = AllMoviesFragment()
-    val transaction = supportFragmentManager.beginTransaction()
-    transaction.replace(R.id.fragment_container, allMoviesFragment)
-    transaction.commit()
+  override fun onCreateView(
+      inflater: LayoutInflater,
+      container: ViewGroup?,
+      savedInstanceState: Bundle?
+  ): View? {
+    return inflater.inflate(R.layout.fragment_all_movies, container, false)
+  }
+
+  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    super.onViewCreated(view, savedInstanceState)
+  }
+
+  override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+    inflater.inflate(R.menu.watchlist, menu)
+    super.onCreateOptionsMenu(menu, inflater)
+  }
+
+  override fun onOptionsItemSelected(item: MenuItem): Boolean {
+    if (item.itemId == R.id.watchlist) {
+      val watchlistFragment = WatchlistFragment()
+      val transaction = requireFragmentManager().beginTransaction()
+      transaction.replace(R.id.fragment_container, watchlistFragment)
+      transaction.addToBackStack(null)
+      transaction.commit()
+    }
+    return super.onOptionsItemSelected(item)
   }
 }

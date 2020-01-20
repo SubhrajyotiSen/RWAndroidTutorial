@@ -3,6 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+  <uses-permission android:name="android.permission.INTERNET" />
+
   <application
       android:allowBackup="false"
       android:icon="@mipmap/ic_launcher"
@@ -14,8 +16,11 @@
 
     <!-- Main Activity -->
     <activity
-        android:name=".MainActivity"
-        android:theme="@style/SplashTheme">
+        android:name=".MainActivity"/>
+
+
+    <activity android:name=".SplashScreenActivity"
+      android:theme="@style/SplashTheme" >
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
         <category android:name="android.intent.category.LAUNCHER" />
