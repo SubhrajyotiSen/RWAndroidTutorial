@@ -28,44 +28,27 @@
  * THE SOFTWARE.
  */
 
-package com.raywenderlich.android.rwandroidtutorial
+package com.raywenderlich.android.watchlist
 
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 
-class AllMoviesFragment : Fragment() {
 
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    setHasOptionsMenu(true)
-  }
+class WatchlistFragment : Fragment() {
 
   override fun onCreateView(
       inflater: LayoutInflater,
       container: ViewGroup?,
       savedInstanceState: Bundle?
   ): View? {
-    return inflater.inflate(R.layout.fragment_all_movies, container, false)
+    return inflater.inflate(R.layout.fragment_watchlist, container, false)
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
   }
 
-  override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-    inflater.inflate(R.menu.watchlist, menu)
-    super.onCreateOptionsMenu(menu, inflater)
-  }
-
-  override fun onOptionsItemSelected(item: MenuItem): Boolean {
-    if (item.itemId == R.id.watchlist) {
-      val watchlistFragment = WatchlistFragment()
-      val transaction = requireFragmentManager().beginTransaction()
-      transaction.replace(R.id.fragment_container, watchlistFragment)
-      transaction.addToBackStack(null)
-      transaction.commit()
-    }
-    return super.onOptionsItemSelected(item)
-  }
 }

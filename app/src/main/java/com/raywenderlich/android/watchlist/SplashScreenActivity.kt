@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019 Razeware LLC
+ * Copyright (c) 2020 Razeware LLC
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -28,20 +28,37 @@
  * THE SOFTWARE.
  */
 
-package com.raywenderlich.android.rwandroidtutorial
+package com.raywenderlich.android.watchlist
 
-import org.junit.Test
+import android.content.Intent
+import android.os.Bundle
+import android.os.Handler
+import android.view.Window
+import android.view.WindowManager
+import androidx.appcompat.app.AppCompatActivity
 
-import org.junit.Assert.*
+class SplashScreenActivity : AppCompatActivity() {
 
-/**
- * Example local unit test, which will execute on the development machine (host).
- *
- * See [testing documentation](http://d.android.com/tools/testing).
- */
-class ExampleUnitTest {
-  @Test
-  fun addition_isCorrect() {
-    assertEquals(4, 2 + 2)
+  companion object {
+    const val SPLASH_SCREEN_DURATION = 2000L
+  }
+
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+
+    // make the activity full screen
+    requestWindowFeature(Window.FEATURE_NO_TITLE)
+    supportActionBar?.hide()
+    window.setFlags(
+        WindowManager.LayoutParams.FLAG_FULLSCREEN,
+        WindowManager.LayoutParams.FLAG_FULLSCREEN)
+
+    Handler().postDelayed({
+
+      startActivity(Intent(this, MainActivity::class.java))
+      overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+      finish()
+
+    }, SPLASH_SCREEN_DURATION)
   }
 }

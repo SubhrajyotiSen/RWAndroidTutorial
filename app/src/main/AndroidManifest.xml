@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="com.raywenderlich.android.rwandroidtutorial"
+<manifest package="com.raywenderlich.android.watchlist"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
@@ -16,10 +16,10 @@
 
     <!-- Main Activity -->
     <activity
-        android:name=".MainActivity"/>
+        android:name="com.raywenderlich.android.watchlist.MainActivity"/>
 
 
-    <activity android:name=".SplashScreenActivity"
+    <activity android:name="com.raywenderlich.android.watchlist.SplashScreenActivity"
       android:theme="@style/SplashTheme" >
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
