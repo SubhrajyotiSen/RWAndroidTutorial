@@ -44,6 +44,7 @@
         android:id="@+id/movie_poster_imageview"
         android:layout_width="match_parent"
         android:layout_height="400dp"
+        tools:srcCompat="@tools:sample/avatars"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView

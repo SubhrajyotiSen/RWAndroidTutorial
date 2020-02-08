@@ -33,8 +33,13 @@ package com.raywenderlich.android.watchlist
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
+import kotlinx.android.synthetic.main.fragment_all_movies.*
 
 class AllMoviesFragment : Fragment() {
+
+  private lateinit var movieAdapter: MovieAdapter
+
+  // add ViewModel declaration here
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -51,6 +56,17 @@ class AllMoviesFragment : Fragment() {
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
+
+    movieAdapter = MovieAdapter(object : MovieAdapter.WatchlistListener {
+      override fun addToWatchlist(movieId: Long) {
+        // call ViewModel to add movie to watchlist
+      }
+
+      override fun removeFromWatchlist(movieId: Long) {
+        // call ViewModel to remove movie from watchlist
+      }
+    })
+    all_movies_recyclerview.adapter = movieAdapter
   }
 
   override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -63,6 +79,7 @@ class AllMoviesFragment : Fragment() {
       val watchlistFragment = WatchlistFragment()
       val transaction = requireFragmentManager().beginTransaction()
       transaction.replace(R.id.fragment_container, watchlistFragment)
+      transaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
       transaction.addToBackStack(null)
       transaction.commit()
     }

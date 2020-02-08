@@ -35,21 +35,11 @@ import io.reactivex.schedulers.Schedulers
 
 class WatchlistRepository {
 
-  companion object {
-
-    private lateinit var watchlistRepository: WatchlistRepository
-
-    fun getWatchlistRepository(): WatchlistRepository {
-      if (!::watchlistRepository.isInitialized) {
-        watchlistRepository = WatchlistRepository()
-      }
-      return watchlistRepository
-    }
-  }
+  private val movies = mutableListOf<MovieModel>()
 
   fun getWatchlistedMovies() = Observable.fromCallable<List<MovieModel>> {
     Thread.sleep(3000)
-    listOf(
+    movies.addAll(listOf(
         MovieModel(
             1234,
             "Fight Club",
@@ -110,7 +100,13 @@ class WatchlistRepository {
             "https://image.tmdb.org/t/p/w500/vloNTScJ3w7jwNwtNGoG8DbTThv.jpg",
             false
         )
-    )
+    ))
+    movies
 
   }.subscribeOn(Schedulers.io())
+
+  // add method to watchlist a movie
+
+  // add method to remove a movie from watchlist
+
 }
