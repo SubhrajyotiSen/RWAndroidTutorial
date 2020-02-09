@@ -106,7 +106,19 @@ class WatchlistRepository {
   }.subscribeOn(Schedulers.io())
 
   // add method to watchlist a movie
+  fun watchlistMovie(movieId: Long): Observable<MovieModel> {
+    return Observable.fromCallable {
+      val movie = movies.first { movie -> movie.id == movieId }
+      movie.copy(isWatchlisted = true)
+    }
+  }
 
   // add method to remove a movie from watchlist
+  fun removeMovieFromWatchlist(movieId: Long): Observable<MovieModel> {
+    return Observable.fromCallable {
+      val movie = movies.first { movie -> movie.id == movieId }
+      movie.copy(isWatchlisted = false)
+    }
+  }
 
 }
